@@ -9,9 +9,16 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hichatbot/components/HideKeyboard.dart';
 import 'package:hichatbot/page/AppOpenPage.dart';
+import 'package:hichatbot/page/purchase_page.dart';
+import 'package:hichatbot/repo/iap_repo.dart';
 import 'package:hichatbot/stores/AIChatStore.dart';
 import 'package:hichatbot/stores/PointsNotifier.dart';
+import 'package:hichatbot/stores/logic/dash_counter.dart';
+import 'package:hichatbot/stores/logic/dash_purchases.dart';
+import 'package:hichatbot/stores/logic/dash_upgrades.dart';
+import 'package:hichatbot/stores/logic/firebase_notifier.dart';
 import 'package:hichatbot/utils/Chatgpt.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:provider/provider.dart';
 import 'package:sp_util/sp_util.dart';
 
@@ -32,13 +39,33 @@ void main() async {
     // TODO: Initialize Google Mobile Ads SDK
     return MobileAds.instance.initialize();
   }
-
+  WidgetsFlutterBinding.ensureInitialized();
   await SpUtil.getInstance();
 
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AIChatStore>(create: (_) => AIChatStore()),
       ChangeNotifierProvider<PointsNotifier>(create: (_) => PointsNotifier()),
+      ChangeNotifierProvider<FirebaseNotifier>(
+          create: (_) => FirebaseNotifier()),
+      ChangeNotifierProvider<DashCounter>(create: (_) => DashCounter()),
+      ChangeNotifierProvider<DashUpgrades>(
+        create: (context) => DashUpgrades(
+          context.read<DashCounter>(),
+          context.read<FirebaseNotifier>(),
+        ),
+      ),
+      ChangeNotifierProvider<IAPRepo>(
+        create: (context) => IAPRepo(context.read<FirebaseNotifier>()),
+      ),
+      ChangeNotifierProvider<DashPurchases>(
+        create: (context) => DashPurchases(
+          context.read<DashCounter>(),
+          context.read<FirebaseNotifier>(),
+          context.read<IAPRepo>(),
+        ),
+        lazy: false,
+      ),
     ],
     child: MyApp(),
   ));
@@ -102,8 +129,8 @@ class _MyAppState extends State<MyApp> {
           ),
           fontFamily: 'Poppins',
         ),
-        home: const SplashPage(),
-        // home: const PointsPage(),
+        // home: const SplashPage(),
+        home: const PurchasePage(),
         builder: EasyLoading.init(),
       ),
     );
@@ -152,4 +179,18 @@ Future<void> configLoading() async {
     ..radius = 10.0
     ..displayDuration = const Duration(milliseconds: 1000)
     ..userInteractions = false;
+}
+
+// Gives the option to override in tests.
+class IAPConnection {
+  static InAppPurchase? _instance;
+
+  static set instance(InAppPurchase value) {
+    _instance = value;
+  }
+
+  static InAppPurchase get instance {
+    _instance ??= InAppPurchase.instance;
+    return _instance!;
+  }
 }
