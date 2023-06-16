@@ -5,16 +5,20 @@ import 'package:hichatbot/components/QuestionInput.dart';
 import 'package:hichatbot/page/ChatHistoryPage.dart';
 import 'package:hichatbot/page/ChatPage.dart';
 import 'package:hichatbot/page/SettingPage.dart';
+import 'package:hichatbot/page/purchase_page.dart';
 import 'package:hichatbot/stores/AIChatStore.dart';
 import 'package:hichatbot/utils/Chatgpt.dart';
 import 'package:hichatbot/utils/Time.dart';
 import 'package:hichatbot/utils/Utils.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 import '../generated/l10n.dart';
+import 'buy_premiumnew.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -48,6 +52,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    final store = Provider.of<AIChatStore>(context, listen: false);
+    if (store.homeHistoryList.length > 0) {
+      _inAppReview();
+    }
   }
 
   @override
@@ -81,173 +89,188 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //提示评分
+  _inAppReview() async {
+    final InAppReview inAppReview = InAppReview.instance;
+
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final store = Provider.of<AIChatStore>(context, listen: true);
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      extendBody: true,
-      appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        forceMaterialTransparency: true,
-        toolbarHeight: 70,
-        automaticallyImplyLeading: true,
-        titleSpacing: 0,
-        title: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            PhysicalModel(
-              color: Colors.transparent,
-              elevation: 0,
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
-              ),
-              shadowColor: Colors.black.withOpacity(0.2),
-              child: const ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(25.0),
-                  bottomRight: Radius.circular(25.0),
+        extendBodyBehindAppBar: true,
+        extendBody: true,
+        appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          forceMaterialTransparency: true,
+          toolbarHeight: 70,
+          automaticallyImplyLeading: true,
+          titleSpacing: 0,
+          title: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              PhysicalModel(
+                color: Colors.transparent,
+                elevation: 0,
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0),
                 ),
-                child: Image(
-                  width: 180,
-                  height: 45,
-                  colorBlendMode: BlendMode.clear,
-                  filterQuality: FilterQuality.high,
-                  isAntiAlias: true,
-                  alignment: Alignment.centerLeft,
-                  image: AssetImage('images/hypeBard.png'),
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text(
-                'HichatBot',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 25,
-                  height: 18 / 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white, // Customize the text color here
+                shadowColor: Colors.black.withOpacity(0.2),
+                child: const ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25.0),
+                    bottomRight: Radius.circular(25.0),
+                  ),
+                  child: Image(
+                    width: 180,
+                    height: 45,
+                    colorBlendMode: BlendMode.clear,
+                    filterQuality: FilterQuality.high,
+                    isAntiAlias: true,
+                    alignment: Alignment.centerLeft,
+                    image: AssetImage('images/hypeBard.png'),
+                  ),
                 ),
               ),
-            )
+              const Padding(
+                padding: EdgeInsets.only(left: 16.0),
+                child: Text(
+                  'HichatBot',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 25,
+                    height: 18 / 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // Customize the text color here
+                  ),
+                ),
+              )
 
-            // ClipRRect(
-            //   borderRadius: const BorderRadius.only(
-            //     topLeft: Radius.circular(15.0),
-            //     bottomLeft: Radius.circular(15.0),
-            //   ),
-            //   child: Container(
-            //     width: 180,
-            //     height: 45,
-            //     color: Colors.transparent,
-            //   ),
-            // ),
+              // ClipRRect(
+              //   borderRadius: const BorderRadius.only(
+              //     topLeft: Radius.circular(15.0),
+              //     bottomLeft: Radius.circular(15.0),
+              //   ),
+              //   child: Container(
+              //     width: 180,
+              //     height: 45,
+              //     color: Colors.transparent,
+              //   ),
+              // ),
+            ],
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            const SizedBox(width: 6),
+            IconButton(
+              // icon: const Icon(Icons.security_rounded),
+              icon: const Icon(Icons.settings),
+              splashColor: Colors.black54,
+              iconSize: 40,
+              color: const Color.fromRGBO(37, 34, 34, 1.0),
+              onPressed: () {
+                Vibration.vibrate(duration: 50);
+                Utils.jumpPage(context, const SettingPage());
+                // Utils.jumpPage(context, BuyPremiumNew());
+              },
+            ),
+            const SizedBox(width: 8),
           ],
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          const SizedBox(width: 6),
-          IconButton(
-            icon: const Icon(Icons.security_rounded),
-            splashColor: Colors.black54,
-            iconSize: 40,
-            color: const Color.fromRGBO(37, 34, 34, 1.0),
-            onPressed: () {
-              Vibration.vibrate(duration: 50);
-              Utils.jumpPage(context, const SettingPage());
-            },
-          ),
-          const SizedBox(width: 8),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (store.homeHistoryList.length > 0)
-                      _renderTitle(
-                        S.of(context).yourrewinds,
-                        animateText: false,
-                        rightContent: Flexible(
-                          child: SizedBox(
-                            width: double.maxFinite,
-                            child: GestureDetector(
-                              onTap: () {
-                                Vibration.vibrate(duration: 50);
-                                Utils.jumpPage(
-                                    context, const ChatHistoryPage());
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 6, horizontal: 12),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.1),
-                                      // Customize the shadow color here
-                                      blurRadius: 10,
-                                      offset: const Offset(0, 0),
-                                    ),
-                                  ],
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Color(0xFF46144B),
-                                      // Customize the gradient start color here
-                                      Color(0xFFF6F1F1),
-                                      // Customize the gradient end color here
-                                    ],
-                                  ),
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).more,
-                                      textAlign: TextAlign.start,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        height: 18 / 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors
-                                            .white, // Customize the text color here
+        body: UpgradeAlert(
+          upgrader: Upgrader(dialogStyle: UpgradeDialogStyle.cupertino),
+          child: SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (store.homeHistoryList.length > 0)
+                          _renderTitle(
+                            S.of(context).yourrewinds,
+                            animateText: false,
+                            rightContent: Flexible(
+                              child: SizedBox(
+                                width: double.maxFinite,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Vibration.vibrate(duration: 50);
+                                    Utils.jumpPage(
+                                        context, const ChatHistoryPage());
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 12),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.1),
+                                          // Customize the shadow color here
+                                          blurRadius: 10,
+                                          offset: const Offset(0, 0),
+                                        ),
+                                      ],
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          Color(0xFF46144B),
+                                          // Customize the gradient start color here
+                                          Color(0xFFF6F1F1),
+                                          // Customize the gradient end color here
+                                        ],
                                       ),
                                     ),
-                                  ],
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          S.of(context).more,
+                                          textAlign: TextAlign.start,
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            height: 18 / 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors
+                                                .white, // Customize the text color here
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    if (store.homeHistoryList.length > 0)
-                      _renderChatListWidget(
-                        store.homeHistoryList,
-                      ),
-                    // _renderTitle("Hey, I am",animateText: false),
-                    _renderTitle(S.of(context).yourhichatbotassistants,
-                        animateText: false),
-                    _renderChatModelListWidget(),
-                  ],
+                        if (store.homeHistoryList.length > 0)
+                          _renderChatListWidget(
+                            store.homeHistoryList,
+                          ),
+                        // _renderTitle("Hey, I am",animateText: false),
+                        _renderTitle(S.of(context).yourhichatbotassistants,
+                            animateText: false),
+                        _renderChatModelListWidget(),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                _renderBottomInputWidget(),
+              ],
             ),
-            _renderBottomInputWidget(),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget _renderTitle(
@@ -531,7 +554,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                 Text(
+                Text(
                   S.current.confirmdeletion,
                   style: const TextStyle(
                     fontSize: 18,
@@ -549,7 +572,7 @@ class _HomePageState extends State<HomePage> {
                         vertical: 12.0,
                         horizontal: 24.0,
                       ),
-                      child:  Text(
+                      child: Text(
                         S.current.cancel,
                         style: const TextStyle(
                           fontSize: 16,
@@ -567,7 +590,7 @@ class _HomePageState extends State<HomePage> {
                         vertical: 12.0,
                         horizontal: 24.0,
                       ),
-                      child:  Text(
+                      child: Text(
                         S.current.confirm,
                         style: const TextStyle(
                           fontSize: 16,

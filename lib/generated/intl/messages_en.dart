@@ -48,8 +48,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Custom OpenAI Base URL"),
         "CustomOpenAIBaseURLtips": MessageLookupByLibrary.simpleMessage(
             "⦿ Custom URL allows you to connect to your own OpenAI instance.\n ⦿ You can set up a local or custom OpenAI deployment.\n"),
+        "DataclearConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Your conversation history is only stored on your device and we do not store it online. Clearing data will result in the loss of your conversation history."),
+        "Enjoytheprivilegeofadfreeexperience":
+            MessageLookupByLibrary.simpleMessage(
+                "Enjoy the privilege of ad-free experience"),
         "EnteryourOpenAIURL":
             MessageLookupByLibrary.simpleMessage("Enter your OpenAI URL"),
+        "ExperiencethelatestChatGPTAImodel":
+            MessageLookupByLibrary.simpleMessage(
+                "Experience the latest ChatGPT AI model"),
+        "GetPro": MessageLookupByLibrary.simpleMessage("Get Pro"),
+        "Haveunlimitedconversationseveryday":
+            MessageLookupByLibrary.simpleMessage(
+                "Have unlimited conversations every day"),
         "HelloImafinancialofficer": MessageLookupByLibrary.simpleMessage(
             "Hello, I\'m a financial officer"),
         "HelloImafullstackjavascriptengineer":
@@ -84,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Iaminlasvegasandiwantittobeawesome":
             MessageLookupByLibrary.simpleMessage(
                 "I am in las vegas, and i want it to be awesome."),
+        "IncreasedWordLimit":
+            MessageLookupByLibrary.simpleMessage("Increased Word Limit"),
         "Ineedanstoryonhowarichmanbecomepoorduetohisbadethics":
             MessageLookupByLibrary.simpleMessage(
                 "I need an story on how a rich man become poor due to his bad ethics"),
@@ -96,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ineedtowriteasciencefictionnovelsetinthefuturewithatimetravellingmysteriousambience":
             MessageLookupByLibrary.simpleMessage(
                 "I need to write a science-fiction novel set in the future with a time travelling mysterious ambience"),
+        "Inputreceivelongermessages": MessageLookupByLibrary.simpleMessage(
+            "Input/receive longer messages"),
         "Issueanemptysheet":
             MessageLookupByLibrary.simpleMessage("Issue an empty sheet"),
         "JavaScriptrecursivebinarytree": MessageLookupByLibrary.simpleMessage(
@@ -103,8 +119,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "Naturallanguagechatcontinuousconversationmode":
             MessageLookupByLibrary.simpleMessage(
                 "Natural language chat, continuous conversation mode"),
+        "NoAds": MessageLookupByLibrary.simpleMessage("No Ads"),
         "Nowletsstartpracticing":
             MessageLookupByLibrary.simpleMessage("Now let\'s start practicing"),
+        "Pleaseloginfirst":
+            MessageLookupByLibrary.simpleMessage("Please Login first."),
+        "PoweredbyGPT4":
+            MessageLookupByLibrary.simpleMessage("Powered by GPT-4"),
+        "RateApp": MessageLookupByLibrary.simpleMessage("Rate App"),
+        "Reachedthedailylimit":
+            MessageLookupByLibrary.simpleMessage("Reached the daily limit"),
+        "Reachedthedailylimittips": MessageLookupByLibrary.simpleMessage(
+            "We are happy to continue answering your questions, but you have reached the daily limit of free usage. You can increase the usage limit by watching rewarded ads or purchasing Pro."),
+        "Rewardads": MessageLookupByLibrary.simpleMessage("Reward ads"),
         "TalktoAIinEnglishAIwillreplyyouinEnglishtopracticeyourEnglishspeaking":
             MessageLookupByLibrary.simpleMessage(
                 "Talk to AI in English, AI will reply you in English to practice your English speaking"),
@@ -117,6 +144,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Translatelovetospanish":
             MessageLookupByLibrary.simpleMessage("Translate love to spanish"),
         "URLupdated": MessageLookupByLibrary.simpleMessage("URL updated"),
+        "UnlimitedConversations":
+            MessageLookupByLibrary.simpleMessage("Unlimited Conversations"),
         "WritedownyourlocationandAIwillrecommendattractionsnearyou":
             MessageLookupByLibrary.simpleMessage(
                 "Write down your location and AI will recommend attractions near you"),
@@ -124,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Write me a wholesome quote"),
         "apikeyintegrated":
             MessageLookupByLibrary.simpleMessage("API key integrated"),
+        "buying": MessageLookupByLibrary.simpleMessage("buying..."),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chatbot": MessageLookupByLibrary.simpleMessage("ChatBot"),
         "cleardata": MessageLookupByLibrary.simpleMessage("Clear Data"),
@@ -146,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "⦿ hichatBot does not collect this key.\n ⦿ In case our API key reports an error, custom keys need to be created at https://platform.openai.com/.\n"),
         "exampleofJavathreadblocking": MessageLookupByLibrary.simpleMessage(
             "Example of Java thread blocking"),
+        "getproducts": MessageLookupByLibrary.simpleMessage("Get Products"),
+        "hichatbotpro": MessageLookupByLibrary.simpleMessage("HiChatBot Pro"),
         "hichatbottheTranslator":
             MessageLookupByLibrary.simpleMessage("Hichatbot, the Translator"),
         "legalAdvisortips":
@@ -154,6 +186,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "lsa": MessageLookupByLibrary.simpleMessage("ls -a"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "privacypolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "purchased": MessageLookupByLibrary.simpleMessage("Purchased"),
+        "restorepurchase":
+            MessageLookupByLibrary.simpleMessage("Restore Purchase"),
         "rmrf": MessageLookupByLibrary.simpleMessage("rm -rf"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "windowalertHello":

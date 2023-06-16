@@ -5,9 +5,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:in_app_purchase/in_app_purchase.dart';
-
+import 'package:sp_util/sp_util.dart';
 
 import '../../constants.dart';
 import '../../main.dart';
@@ -19,6 +20,7 @@ import 'firebase_notifier.dart';
 
 class DashPurchases extends ChangeNotifier {
   DashCounter counter;
+  bool _isPro = false; //验证是否有有效订阅
   FirebaseNotifier firebaseNotifier;
   IAPRepo iapRepo;
   StoreState storeState = StoreState.loading;
@@ -26,6 +28,8 @@ class DashPurchases extends ChangeNotifier {
   List<PurchasableProduct> products = [];
 
   bool get beautifiedDash => _beautifiedDashUpgrade;
+
+  bool get isPro => _isPro;
   bool _beautifiedDashUpgrade = false;
   final iapConnection = IAPConnection.instance;
 
@@ -113,7 +117,8 @@ class DashPurchases extends ChangeNotifier {
   }
 
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) async {
-    final url = Uri.parse('http://$serverIp:8080/verifypurchase');
+    // final url = Uri.parse('http://$serverIp:8080/verifypurchase');
+    final url = Uri.parse('$serverIp/verifypurchase');
     const headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -149,6 +154,7 @@ class DashPurchases extends ChangeNotifier {
   void purchasesUpdate() {
     var subscriptions = <PurchasableProduct>[];
     var upgrades = <PurchasableProduct>[];
+
     // Get a list of purchasable products for the subscription and upgrade.
     // This should be 1 per type.
     if (products.isNotEmpty) {
@@ -163,11 +169,17 @@ class DashPurchases extends ChangeNotifier {
     // Set the subscription in the counter logic and show/hide purchased on the
     // purchases page.
     if (iapRepo.hasActiveSubscription) {
+      _isPro = true;
+      //写入本地储存
+      SpUtil.putBool('isPro', true);
       counter.applyPaidMultiplier();
       for (final element in subscriptions) {
         _updateStatus(element, ProductStatus.purchased);
       }
     } else {
+      _isPro = false;
+      //写入本地储存
+      SpUtil.putBool('isPro', false);
       counter.removePaidMultiplier();
       for (final element in subscriptions) {
         _updateStatus(element, ProductStatus.purchasable);

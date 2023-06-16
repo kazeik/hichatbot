@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hichatbot/page/PrivacyPolicyPage.dart';
 import 'package:hichatbot/stores/AIChatStore.dart';
 import 'package:hichatbot/utils/Chatgpt.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,6 +13,7 @@ import 'package:vibration/vibration.dart';
 
 import '../generated/l10n.dart';
 import '../utils/Utils.dart';
+import 'buy_premiumnew.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -110,6 +113,15 @@ class _SettingPageState extends State<SettingPage> with WidgetsBindingObserver {
                 child: Column(
                   children: [
                     renderItemWidget(
+                      Icons.stars_outlined,
+                      Colors.lightGreen,
+                      26,
+                      S.current.GetPro,
+                      () {
+                        Utils.jumpPage(context, BuyPremiumNew());
+                      },
+                    ),
+                    renderItemWidget(
                       Icons.vpn_key,
                       Colors.lightGreen,
                       26,
@@ -131,15 +143,27 @@ class _SettingPageState extends State<SettingPage> with WidgetsBindingObserver {
                         _showCustomOpenAIUrlDialog();
                       },
                     ),
+                    // renderItemWidget(
+                    //   Icons.face,
+                    //   Colors.deepPurple,
+                    //   26,
+                    //   'Hey, somrit here!',
+                    //   () async {
+                    //     final Uri url = Uri.parse(
+                    //         'https://www.linkedin.com/in/somritdasgupta');
+                    //     launchURL(url.toString());
+                    //   },
+                    // ),
                     renderItemWidget(
-                      Icons.face,
-                      Colors.deepPurple,
+                      Icons.rate_review,
+                      Colors.lightGreen,
                       26,
-                      'Hey, somrit here!',
-                      () async {
-                        final Uri url = Uri.parse(
-                            'https://www.linkedin.com/in/somritdasgupta');
-                        launchURL(url.toString());
+                      S.current.RateApp,
+                      () {
+                        final InAppReview inAppReview = InAppReview.instance;
+
+                        inAppReview.openStoreListing(
+                            appStoreId: '...', microsoftStoreId: '...');
                       },
                     ),
                     renderItemWidget(
@@ -158,12 +182,7 @@ class _SettingPageState extends State<SettingPage> with WidgetsBindingObserver {
                       22,
                       S.of(context).cleardata,
                       () {
-                        ChatGPT.storage.erase();
-                        final store =
-                            Provider.of<AIChatStore>(context, listen: false);
-                        store.syncStorage();
-                        SpUtil.clear();
-                        EasyLoading.showToast('Data cleared successfully');
+                        _showDataclearConfirmationDialog(context);
                       },
                     ),
                   ],
@@ -172,30 +191,12 @@ class _SettingPageState extends State<SettingPage> with WidgetsBindingObserver {
             ),
           ),
         ),
-        // const Positioned(
-        //   left: 0,
-        //   right: 0,
-        //   bottom: 10,
-        //   child: Text(
-        //     'Made with ❤ by Somrit',
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(
-        //       color: Colors.blueGrey,
-        //       fontSize: 14,
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }
 
-  Widget renderItemWidget(
-    IconData icon,
-    Color iconColor,
-    double iconSize,
-    String title,
-    VoidCallback onPressed,
-  ) {
+  Widget renderItemWidget(IconData icon, Color iconColor, double iconSize,
+      String title, VoidCallback onPressed) {
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -479,6 +480,93 @@ class _SettingPageState extends State<SettingPage> with WidgetsBindingObserver {
                             dismissOnTap: true,
                           );
                         });
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  _showDataclearConfirmationDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          elevation: 90,
+          shadowColor: Colors.black,
+          surfaceTintColor: Colors.lime[200],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          backgroundColor: Colors.white.withOpacity(0.8),
+          // Adjust the opacity here
+          child: Container(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  S.current.confirmdeletion,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  S.current.DataclearConfirmation,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    CupertinoButton(
+                      color: Colors.grey.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(12.0),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 24.0,
+                      ),
+                      child: Text(
+                        S.current.cancel,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop(false);
+                      },
+                    ),
+                    CupertinoButton(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12.0),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 24.0,
+                      ),
+                      child: Text(
+                        S.current.confirm,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () async {
+                        ChatGPT.storage.erase();
+                        final store =
+                            Provider.of<AIChatStore>(context, listen: false);
+                        store.syncStorage();
+                        SpUtil.clear();
+                        EasyLoading.showToast('Data cleared successfully');
                       },
                     ),
                   ],

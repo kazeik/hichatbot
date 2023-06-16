@@ -8,6 +8,7 @@ import 'package:vibration/vibration.dart';
 
 import '../generated/l10n.dart';
 import '../stores/PointsNotifier.dart';
+import '../stores/logic/dash_purchases.dart';
 
 GlobalKey<_QuestionInputState> globalQuestionInputKey = GlobalKey();
 
@@ -169,10 +170,11 @@ class _QuestionInputState extends State<QuestionInput> {
   void onSubmit() async {
     final store = Provider.of<AIChatStore>(context, listen: false);
     final pointsNotifier = Provider.of<PointsNotifier>(context, listen: false);
+    final dashPurchases = Provider.of<DashPurchases>(context, listen: false);
     //如果积分不够禁止提交
-    if (pointsNotifier.points <= 0) {
+    if (pointsNotifier.points <= 0 && dashPurchases.isPro == false) {
       EasyLoading.showToast(
-        'Reached the daily limit!please Watch videos to increase your limit or subscribe to us',
+        S.current.Reachedthedailylimit,
         dismissOnTap: true,
       );
       return;

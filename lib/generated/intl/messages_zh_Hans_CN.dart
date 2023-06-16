@@ -46,8 +46,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("自定义OpenAI基本URL"),
         "CustomOpenAIBaseURLtips": MessageLookupByLibrary.simpleMessage(
             "⦿ 自定义URL允许您连接到自己的OpenAI实例。\n ⦿ 您可以设置本地或自定义的OpenAI部署。\n"),
+        "DataclearConfirmation": MessageLookupByLibrary.simpleMessage(
+            "您的对话记录仅储存在您的设备，我们不会在线储存。清除数据将失去您的对话记录"),
+        "Enjoytheprivilegeofadfreeexperience":
+            MessageLookupByLibrary.simpleMessage("享受去除广告特权"),
         "EnteryourOpenAIURL":
             MessageLookupByLibrary.simpleMessage("输入您的OpenAI URL"),
+        "ExperiencethelatestChatGPTAImodel":
+            MessageLookupByLibrary.simpleMessage("体验最新ChatGPT AI模型"),
+        "GetPro": MessageLookupByLibrary.simpleMessage("获取专业版"),
+        "Haveunlimitedconversationseveryday":
+            MessageLookupByLibrary.simpleMessage("每天无限次对话"),
         "HelloImafinancialofficer":
             MessageLookupByLibrary.simpleMessage("你好，我是一个财务官员"),
         "HelloImafullstackjavascriptengineer":
@@ -77,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("HichatBot，帮您编程"),
         "Iaminlasvegasandiwantittobeawesome":
             MessageLookupByLibrary.simpleMessage("我在拉斯维加斯，我希望度假很棒。"),
+        "IncreasedWordLimit": MessageLookupByLibrary.simpleMessage("字数上限放宽"),
         "Ineedanstoryonhowarichmanbecomepoorduetohisbadethics":
             MessageLookupByLibrary.simpleMessage("我需要一个关于一个富人因为不道德而变 穷的故事"),
         "Ineedapickupline": MessageLookupByLibrary.simpleMessage("给我一句搭讪的台词!"),
@@ -87,13 +97,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ineedtowriteasciencefictionnovelsetinthefuturewithatimetravellingmysteriousambience":
             MessageLookupByLibrary.simpleMessage(
                 "我需要写一部设定在未来、具有时间旅行和神秘氛围的科幻小说"),
+        "Inputreceivelongermessages":
+            MessageLookupByLibrary.simpleMessage("输入/接收更长的消息字数"),
         "Issueanemptysheet": MessageLookupByLibrary.simpleMessage("创建一个空表格"),
         "JavaScriptrecursivebinarytree":
             MessageLookupByLibrary.simpleMessage("JavaScript递归二叉树"),
         "Naturallanguagechatcontinuousconversationmode":
             MessageLookupByLibrary.simpleMessage("自然语言聊天，连续对话模式"),
+        "NoAds": MessageLookupByLibrary.simpleMessage("无广告"),
         "Nowletsstartpracticing":
             MessageLookupByLibrary.simpleMessage("现在让我们开始练习"),
+        "Pleaseloginfirst": MessageLookupByLibrary.simpleMessage("请登录"),
+        "PoweredbyGPT4": MessageLookupByLibrary.simpleMessage("GPT4提供技术驱动"),
+        "RateApp": MessageLookupByLibrary.simpleMessage("给我们评分"),
+        "Reachedthedailylimit":
+            MessageLookupByLibrary.simpleMessage("达到每日对话次数"),
+        "Reachedthedailylimittips": MessageLookupByLibrary.simpleMessage(
+            "我们很乐意继续回答您的提问，但您达到每日免费使用次数，观看激励广告增加使用次数，或者购买专业版"),
+        "Rewardads": MessageLookupByLibrary.simpleMessage("看视频广告"),
         "TalktoAIinEnglishAIwillreplyyouinEnglishtopracticeyourEnglishspeaking":
             MessageLookupByLibrary.simpleMessage("用英语与AI交流，AI会用英语回复你以提升你的英语口语"),
         "TranslateAlanguagetoBlanguage":
@@ -105,11 +126,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Translatelovetospanish":
             MessageLookupByLibrary.simpleMessage("将love翻译为西班牙语"),
         "URLupdated": MessageLookupByLibrary.simpleMessage("URL保存成功"),
+        "UnlimitedConversations":
+            MessageLookupByLibrary.simpleMessage("对话次数无限制"),
         "WritedownyourlocationandAIwillrecommendattractionsnearyou":
             MessageLookupByLibrary.simpleMessage("写下你的位置，AI将推荐附近的景点"),
         "Writemeawholesomequote":
             MessageLookupByLibrary.simpleMessage("给我写一句温馨的名言"),
         "apikeyintegrated": MessageLookupByLibrary.simpleMessage("自定义key设置成功"),
+        "buying": MessageLookupByLibrary.simpleMessage("正在购买"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "chatbot": MessageLookupByLibrary.simpleMessage("AI机器人"),
         "cleardata": MessageLookupByLibrary.simpleMessage("清除数据"),
@@ -129,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "⦿ hichatBot不会收集此密钥。 \n ⦿ 如果我们的API密钥报错，请在https://platform.openai.com/上创建自定义密钥。\n"),
         "exampleofJavathreadblocking":
             MessageLookupByLibrary.simpleMessage("写一段java线程阻塞案例"),
+        "getproducts": MessageLookupByLibrary.simpleMessage("获取商品"),
+        "hichatbotpro": MessageLookupByLibrary.simpleMessage("HiChatBot专业版"),
         "hichatbottheTranslator":
             MessageLookupByLibrary.simpleMessage("Hichatbot，翻译家"),
         "legalAdvisortips": MessageLookupByLibrary.simpleMessage("诈骗罪的量刑"),
@@ -136,6 +162,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lsa": MessageLookupByLibrary.simpleMessage("ls -a"),
         "more": MessageLookupByLibrary.simpleMessage("更多"),
         "privacypolicy": MessageLookupByLibrary.simpleMessage("隐私政策"),
+        "purchased": MessageLookupByLibrary.simpleMessage("订阅有效"),
+        "restorepurchase": MessageLookupByLibrary.simpleMessage("恢复购买"),
         "rmrf": MessageLookupByLibrary.simpleMessage("rm -rf"),
         "settings": MessageLookupByLibrary.simpleMessage("设置"),
         "windowalertHello":

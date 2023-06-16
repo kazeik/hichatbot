@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,10 +23,9 @@ import 'package:hichatbot/utils/Chatgpt.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:provider/provider.dart';
 import 'package:sp_util/sp_util.dart';
-
-import 'PointsPage.dart';
 import 'admob/app_lifecycle_reactor.dart';
 import 'admob/app_open_ad_manager.dart';
+import 'firebase_options.dart';
 import 'generated/l10n.dart';
 
 void main() async {
@@ -39,8 +40,12 @@ void main() async {
     // TODO: Initialize Google Mobile Ads SDK
     return MobileAds.instance.initialize();
   }
-  WidgetsFlutterBinding.ensureInitialized();
+
+  // WidgetsFlutterBinding.ensureInitialized();
   await SpUtil.getInstance();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(MultiProvider(
     providers: [
@@ -85,15 +90,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late AppLifecycleReactor _appLifecycleReactor;
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    AppOpenAdManager appOpenAdManager = AppOpenAdManager()..loadAd();
-    _appLifecycleReactor =
-        AppLifecycleReactor(appOpenAdManager: appOpenAdManager);
-    _appLifecycleReactor.listenToAppStateChanges();
+    if(SpUtil.getBool('isPro')==false){
+          //开屏广告
+          AppOpenAdManager appOpenAdManager = AppOpenAdManager()..loadAd();
+          _appLifecycleReactor =
+              AppLifecycleReactor(appOpenAdManager: appOpenAdManager);
+          _appLifecycleReactor.listenToAppStateChanges();
+    }
   }
 
   @override
@@ -101,14 +112,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // 初始化PointsNotifier并赠送积分
     final pointsNotifier = Provider.of<PointsNotifier>(context);
+    final store = Provider.of<AIChatStore>(context, listen: true);
     pointsNotifier.init().then((_) {
       pointsNotifier.checkAndGiftPoints();
     });
-    print(pointsNotifier.points);
-    print(SpUtil.getString('lastGiftDate'));
-    print('-------');
     return HideKeyboard(
       child: MaterialApp(
+        navigatorObservers: <NavigatorObserver>[observer],
         supportedLocales: S.delegate.supportedLocales,
         localizationsDelegates: const [
           S.delegate,
@@ -129,8 +139,8 @@ class _MyAppState extends State<MyApp> {
           ),
           fontFamily: 'Poppins',
         ),
-        // home: const SplashPage(),
-        home: const PurchasePage(),
+        home: const SplashPage(),
+        // home: const PurchasePage(),
         builder: EasyLoading.init(),
       ),
     );

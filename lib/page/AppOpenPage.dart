@@ -43,7 +43,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       }
     });
     _splashLottie = Lottie.asset(
-      'images/splash.json',
+      'images/ai.json',
       repeat: false,
       animate: true,
       width: double.maxFinite,

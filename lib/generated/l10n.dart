@@ -763,6 +763,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Purchased`
+  String get purchased {
+    return Intl.message(
+      'Purchased',
+      name: 'purchased',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `buying...`
+  String get buying {
+    return Intl.message(
+      'buying...',
+      name: 'buying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Powered by GPT-4`
+  String get PoweredbyGPT4 {
+    return Intl.message(
+      'Powered by GPT-4',
+      name: 'PoweredbyGPT4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Experience the latest ChatGPT AI model`
+  String get ExperiencethelatestChatGPTAImodel {
+    return Intl.message(
+      'Experience the latest ChatGPT AI model',
+      name: 'ExperiencethelatestChatGPTAImodel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Increased Word Limit`
+  String get IncreasedWordLimit {
+    return Intl.message(
+      'Increased Word Limit',
+      name: 'IncreasedWordLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Input/receive longer messages`
+  String get Inputreceivelongermessages {
+    return Intl.message(
+      'Input/receive longer messages',
+      name: 'Inputreceivelongermessages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unlimited Conversations`
+  String get UnlimitedConversations {
+    return Intl.message(
+      'Unlimited Conversations',
+      name: 'UnlimitedConversations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have unlimited conversations every day`
+  String get Haveunlimitedconversationseveryday {
+    return Intl.message(
+      'Have unlimited conversations every day',
+      name: 'Haveunlimitedconversationseveryday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Ads`
+  String get NoAds {
+    return Intl.message(
+      'No Ads',
+      name: 'NoAds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy the privilege of ad-free experience`
+  String get Enjoytheprivilegeofadfreeexperience {
+    return Intl.message(
+      'Enjoy the privilege of ad-free experience',
+      name: 'Enjoytheprivilegeofadfreeexperience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HiChatBot Pro`
+  String get hichatbotpro {
+    return Intl.message(
+      'HiChatBot Pro',
+      name: 'hichatbotpro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your conversation history is only stored on your device and we do not store it online. Clearing data will result in the loss of your conversation history.`
+  String get DataclearConfirmation {
+    return Intl.message(
+      'Your conversation history is only stored on your device and we do not store it online. Clearing data will result in the loss of your conversation history.',
+      name: 'DataclearConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Login first.`
+  String get Pleaseloginfirst {
+    return Intl.message(
+      'Please Login first.',
+      name: 'Pleaseloginfirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restore Purchase`
+  String get restorepurchase {
+    return Intl.message(
+      'Restore Purchase',
+      name: 'restorepurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Products`
+  String get getproducts {
+    return Intl.message(
+      'Get Products',
+      name: 'getproducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Pro`
+  String get GetPro {
+    return Intl.message(
+      'Get Pro',
+      name: 'GetPro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reward ads`
+  String get Rewardads {
+    return Intl.message(
+      'Reward ads',
+      name: 'Rewardads',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reached the daily limit`
+  String get Reachedthedailylimit {
+    return Intl.message(
+      'Reached the daily limit',
+      name: 'Reachedthedailylimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are happy to continue answering your questions, but you have reached the daily limit of free usage. You can increase the usage limit by watching rewarded ads or purchasing Pro.`
+  String get Reachedthedailylimittips {
+    return Intl.message(
+      'We are happy to continue answering your questions, but you have reached the daily limit of free usage. You can increase the usage limit by watching rewarded ads or purchasing Pro.',
+      name: 'Reachedthedailylimittips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate App`
+  String get RateApp {
+    return Intl.message(
+      'Rate App',
+      name: 'RateApp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

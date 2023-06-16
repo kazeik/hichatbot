@@ -8,8 +8,10 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hichatbot/components/QuestionInput.dart';
+import 'package:hichatbot/page/buy_premiumnew.dart';
 import 'package:hichatbot/stores/AIChatStore.dart';
 import 'package:hichatbot/utils/Chatgpt.dart';
+import 'package:hichatbot/utils/Utils.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -17,6 +19,7 @@ import 'package:vibration/vibration.dart';
 import 'package:markdown/markdown.dart' as md;
 import '../generated/l10n.dart';
 import '../stores/PointsNotifier.dart';
+import '../stores/logic/dash_purchases.dart';
 import '../utils/MathMarkdownUtil.dart';
 
 class ChatPage extends StatefulWidget {
@@ -50,8 +53,12 @@ class _ChatPageState extends State<ChatPage> {
   bool _isCopying = false;
   RewardedAd? _rewardedAd;
   final String _adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/5224354917'
-      : 'ca-app-pub-3940256099942544/1712485313';
+      ? 'ca-app-pub-8846782544598831/8355219625'
+      : 'ca-app-pub-8846782544598831/4432264408';
+
+  //以下是测试广告
+  // ? 'ca-app-pub-3940256099942544/5224354917'
+  // : 'ca-app-pub-3940256099942544/1712485313';
 
   @override
   void didChangeDependencies() {
@@ -163,6 +170,7 @@ class _ChatPageState extends State<ChatPage> {
     final store = Provider.of<AIChatStore>(context, listen: true);
     final chat = store.getChatById(widget.chatType, widget.chatId);
     final pointsNotifier = Provider.of<PointsNotifier>(context, listen: true);
+    var dashPurchases = context.watch<DashPurchases>();
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: true,
@@ -236,7 +244,8 @@ class _ChatPageState extends State<ChatPage> {
       body: SafeArea(
         child: Column(
           children: [
-            pointsNotifier.points < 1
+            //积分为0，并且不是专业版提示观看广告和购买
+            pointsNotifier.points < 1 && dashPurchases.isPro == false
                 ? Container(
                     color: const Color(0xFFF6F1F1),
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
@@ -582,41 +591,29 @@ class _ChatPageState extends State<ChatPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Reached the daily limit',
-              style: TextStyle(
+            Text(
+              S.current.Reachedthedailylimit,
+              style: const TextStyle(
                 color: Colors.tealAccent,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Watch videos to increase your limit or subscribe to us.',
-              style: TextStyle(
+            Text(
+              S.current.Reachedthedailylimittips,
+              style: const TextStyle(
                 color: Colors.tealAccent,
                 fontSize: 16,
                 fontWeight: FontWeight.normal,
               ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2, // 设置为1行
+              // overflow: TextOverflow.ellipsis,
+              // maxLines: 2, // 设置为1行
             ),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {
-                    // 按钮被点击时执行的操作
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                  ),
-                  child: const Text(
-                    'subscribe',
-                    style: TextStyle(fontSize: 18, color: Colors.tealAccent),
-                  ),
-                ),
                 TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -627,12 +624,25 @@ class _ChatPageState extends State<ChatPage> {
                       pointsNotifier.addPoints(); //观看完广告奖励观看次数
                     });
                   },
-                  child: const Text(
-                    'Reward ads',
+                  child: Text(
+                    S.current.Rewardads,
                     style:
-                    TextStyle(fontSize: 18, color: Colors.tealAccent),
+                        const TextStyle(fontSize: 18, color: Colors.tealAccent),
                   ),
-                )
+                ),
+                TextButton(
+                  onPressed: () {
+                    Utils.jumpPage(context, BuyPremiumNew());
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: Text(
+                    S.current.GetPro,
+                    style:
+                        const TextStyle(fontSize: 18, color: Colors.tealAccent),
+                  ),
+                ),
 
                 // IconButton(
                 //   icon: const Icon(

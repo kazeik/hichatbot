@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 import '../model/firebase_state.dart';
 import '../model/purchasable_product.dart';
 import '../model/store_state.dart';
@@ -22,9 +21,9 @@ class PurchasePage extends StatelessWidget {
       return _PurchasesNotAvailable();
     }
 
-    if (!firebaseNotifier.loggedIn) {
-      return const LoginPage();
-    }
+    // if (!firebaseNotifier.loggedIn) {
+    //   return const LoginPage();
+    // }
 
     var upgrades = context.watch<DashPurchases>();
 
@@ -70,12 +69,15 @@ class _PurchaseList extends StatelessWidget {
   Widget build(BuildContext context) {
     var purchases = context.watch<DashPurchases>();
     var products = purchases.products;
+    var firebaseNotifier = context.watch<FirebaseNotifier>();
     return Column(
       children: products
           .map((product) => _PurchaseWidget(
               product: product,
               onPressed: () {
-                purchases.buy(product);
+                firebaseNotifier.loggedIn
+                    ? purchases.buy(product)
+                    : firebaseNotifier.login();
               }))
           .toList(),
     );
@@ -94,6 +96,9 @@ class _PurchaseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var title = product.title;
+    print(product.productDetails.price);
+
+    print('product.productDetails');
     if (product.status == ProductStatus.purchased) {
       title += ' (purchased)';
     }
