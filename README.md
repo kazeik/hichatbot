@@ -20,7 +20,7 @@ HiChatBot提供用户友好且直观的界面，易于导航和访问所有功�
 拥有HiChatBot，您的可能性将无限延伸。赋予自己一位智能助手，提升工作效率、丰富知识、促进无缝沟通。立即下载HiChatBot，体验触手可及的下一代人工智能助手。
 
 # 截图
-![截图一](screens/Screenshot_01.png#pic_center =60x60)
+![截图一](/screens/Screenshot_01.png#pic_center =60x60)
 ![截图二](screens/Screenshot_02.png#pic_center =60x60)
 ![截图三](screens/Screenshot_03.png#pic_center =60x60)
 ![截图四](screens/Screenshot_03.png#pic_center =60x60)
