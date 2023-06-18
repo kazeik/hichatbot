@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hichatbot/page/HomePage.dart';
+import 'package:hichatbot/page/buy_premiumnew.dart';
 import 'package:hichatbot/utils/Utils.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sp_util/sp_util.dart';
 
 import '../utils/Config.dart';
 
@@ -39,7 +41,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       if (status == AnimationStatus.completed) {
         _lottieController.stop();
         _showAppOpenAnimate = false;
-        Utils.pushReplacement(context, const HomePage());
+        if (SpUtil.getBool('isPro') == false) {
+          Utils.pushReplacement(context, BuyPremiumNew());
+        } else {
+          Utils.pushReplacement(context, const HomePage());
+        }
       }
     });
     _splashLottie = Lottie.asset(

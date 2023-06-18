@@ -565,8 +565,10 @@ class _SettingPageState extends State<SettingPage> with WidgetsBindingObserver {
                         final store =
                             Provider.of<AIChatStore>(context, listen: false);
                         store.syncStorage();
-                        SpUtil.clear();
+                        SpUtil.remove(store.chatListKey);
+                        // SpUtil.clear();
                         EasyLoading.showToast('Data cleared successfully');
+                        Navigator.of(context).pop(true);
                       },
                     ),
                   ],

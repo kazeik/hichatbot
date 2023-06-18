@@ -21,6 +21,8 @@ import '../repo/iap_repo.dart';
 import '../stores/logic/dash_counter.dart';
 import '../stores/logic/dash_purchases.dart';
 import '../stores/logic/firebase_notifier.dart';
+import '../utils/Utils.dart';
+import 'HomePage.dart';
 import 'login_page.dart';
 
 const bool _kAutoConsume = true;
@@ -113,49 +115,54 @@ class _BuyPremiumNewState extends State<BuyPremiumNew> {
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        toolbarHeight: 60,
-        automaticallyImplyLeading: false,
-        titleSpacing: 0,
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            InkWell(
-              splashColor: Colors.white,
-              highlightColor: Colors.white,
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: SizedBox(
-                height: 60,
-                child: Row(
-                  children: [
-                    const SizedBox(width: 24),
-                    const Icon(
-                      Icons.arrow_back_ios_rounded,
-                      size: 30,
-                      weight: 100,
-                      color: Colors.black,
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      S.of(context).hichatbotpro,
-                      style: const TextStyle(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        fontSize: 26,
-                        height: 0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(width: 24),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: const Color(0xFFF6F1F1),
+        toolbarHeight: 30,
+        backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.cancel, color: Colors.black38),
+          onPressed: () => Utils.pushReplacement(context, const HomePage()),
+        ),
+        // systemOverlayStyle: SystemUiOverlayStyle.dark,
+        // toolbarHeight: 60,
+        // automaticallyImplyLeading: false,
+        // titleSpacing: 0,
+        // title: Row(
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   children: [
+        //     InkWell(
+        //       splashColor: Colors.white,
+        //       highlightColor: Colors.white,
+        //       onTap: () {
+        //         Navigator.pop(context);
+        //       },
+        //       child: SizedBox(
+        //         height: 60,
+        //         child: Row(
+        //           children: [
+        //             const SizedBox(width: 24),
+        //             const Icon(
+        //               Icons.arrow_back_ios_rounded,
+        //               size: 30,
+        //               weight: 100,
+        //               color: Colors.black,
+        //             ),
+        //             const SizedBox(width: 12),
+        //             Text(
+        //               S.of(context).hichatbotpro,
+        //               style: const TextStyle(
+        //                 color: Color.fromRGBO(0, 0, 0, 1),
+        //                 fontSize: 26,
+        //                 height: 0,
+        //                 fontWeight: FontWeight.w400,
+        //               ),
+        //             ),
+        //             const SizedBox(width: 24),
+        //           ],
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
       ),
       body: Stack(
         children: stack,
@@ -173,16 +180,15 @@ class _BuyPremiumNewState extends State<BuyPremiumNew> {
     //   title: Text(
     //       'The store is ' + (_isAvailable ? 'available' : 'unavailable') + '.'),
     // );
-    // const Widget storeHeader = Text(
-    //   'PREMIUM',
-    //   style: TextStyle(
-    //     fontSize: 30,
-    //     color: Colors.black,
-    //     fontWeight: FontWeight.w900,
-    //   ),
-    // );
-    // final List<Widget> children = <Widget>[storeHeader];
-    final List<Widget> children = <Widget>[];
+    Widget storeHeader = Text(
+      S.of(context).hichatbotpro,
+      style: const TextStyle(
+        fontSize: 30,
+        color: Colors.black,
+        fontWeight: FontWeight.w900,
+      ),
+    );
+    final List<Widget> children = <Widget>[storeHeader];
     final Widget premiumNotes = Padding(
       padding: EdgeInsets.only(top: 1.0),
       child: Center(

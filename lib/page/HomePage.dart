@@ -105,10 +105,11 @@ class _HomePageState extends State<HomePage> {
         extendBodyBehindAppBar: true,
         extendBody: true,
         appBar: AppBar(
+
           systemOverlayStyle: SystemUiOverlayStyle.dark,
           forceMaterialTransparency: true,
           toolbarHeight: 70,
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           titleSpacing: 0,
           title: Stack(
             alignment: Alignment.centerLeft,

@@ -66,8 +66,11 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Future<void> initTts() async {
-    _flutterTts = FlutterTts();
+    // Future.delayed(Duration(seconds: 1), () {
+    //   _flutterTts = FlutterTts();
+    // });
 
+    _flutterTts = FlutterTts();
     _setAwaitOptions();
 
     _flutterTts.setStartHandler(() {
