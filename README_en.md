@@ -20,16 +20,14 @@ HiChatBot offers a user-friendly and intuitive interface, making it easy to navi
 With HiChatBot, your possibilities are limitless. Empower yourself with an intelligent assistant to boost productivity, enrich knowledge, and facilitate seamless communication. Download HiChatBot now and experience the next-generation AI assistant at your fingertips.
 
 # Screenshots
-<img src="screens/Screenshot_01.png" alt="示例图片" width="270" height="630">
-<img src="screens/Screenshot_02.png" alt="示例图片" width="270" height="630">
-<img src="screens/Screenshot_03.png" alt="示例图片" width="270" height="630">
-<img src="screens/Screenshot_04.png" alt="示例图片" width="270" height="630">
+<img src="screens/Screenshot_01.png" alt="示例图片" width="270" height="630"><img src="screens/Screenshot_02.png" alt="示例图片" width="270" height="630"><img src="screens/Screenshot_03.png" alt="示例图片" width="270" height="630"><img src="screens/Screenshot_04.png" alt="示例图片" width="270" height="630">
 
 # Usage Instructions
 
 ## If you want to experience the functionality of chatGPT, you can directly download our compiled version.
 
 [app-release](https://github.com/shipinbaoku/hichatbot/releases/download/v5.0.0/app-release.apk)
+
 [googleplay](https://play.google.com/store/apps/details?id=app.hichatbot.hichatbot)
 
 ## If you have your own OpenAI account, downloading our compiled version allows you to customize your API key and intermediary URL.

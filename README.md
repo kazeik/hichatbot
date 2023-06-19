@@ -20,16 +20,14 @@ HiChatBot提供用户友好且直观的界面，易于导航和访问所有功�
 拥有HiChatBot，您的可能性将无限延伸。赋予自己一位智能助手，提升工作效率、丰富知识、促进无缝沟通。立即下载HiChatBot，体验触手可及的下一代人工智能助手。
 
 # 截图
-<img src="screens/Screenshot_01.png" alt="示例图片" width="270" height="630">
-<img src="screens/Screenshot_02.png" alt="示例图片" width="270" height="630">
-<img src="screens/Screenshot_03.png" alt="示例图片" width="270" height="630">
-<img src="screens/Screenshot_04.png" alt="示例图片" width="270" height="630">
+<img src="screens/Screenshot_01.png" alt="示例图片" width="270" height="630"><img src="screens/Screenshot_02.png" alt="示例图片" width="270" height="630"><img src="screens/Screenshot_03.png" alt="示例图片" width="270" height="630"><img src="screens/Screenshot_04.png" alt="示例图片" width="270" height="630">
 
 
 # 使用说明
 
 ## 如果您想体验chatGPT的功能，可以直接下载我们的编译版本
 [app-release](https://github.com/shipinbaoku/hichatbot/releases/download/v5.0.0/app-release.apk)
+
 [googleplay](https://play.google.com/store/apps/details?id=app.hichatbot.hichatbot)
 
 ## 如果您自有openai账号，下载我们的编译版本，可以自定义key和中转url
