@@ -1,3 +1,11 @@
+<style>
+#my-image {
+  display: block; /* 将图片显示为块级元素，以便可以设置宽度和居中 */
+  margin: 0 auto; /* 居中图片 */
+  max-width: 50%; /* 设置图片的最大宽度 */
+}
+</style>
+
 # HichatBot简介
 
 HiChatBot产品说明：您全能的人工智能助手
@@ -20,10 +28,11 @@ HiChatBot提供用户友好且直观的界面，易于导航和访问所有功�
 拥有HiChatBot，您的可能性将无限延伸。赋予自己一位智能助手，提升工作效率、丰富知识、促进无缝沟通。立即下载HiChatBot，体验触手可及的下一代人工智能助手。
 
 # 截图
-![截图一](screens/Screenshot_01.png#pic_center =60x60)
-![截图二](screens/Screenshot_02.png#pic_center =60x60)
-![截图三](screens/Screenshot_03.png#pic_center =60x60)
-![截图四](screens/Screenshot_03.png#pic_center =60x60)
+
+<img id="my-image" src="screens/Screenshot_01.png" alt="图片描述">
+<img id="my-image" src="screens/Screenshot_02.png" alt="图片描述">
+<img id="my-image" src="screens/Screenshot_03.png" alt="图片描述">
+<img id="my-image" src="screens/Screenshot_04.png" alt="图片描述">
 
 
 # 使用说明

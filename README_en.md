@@ -20,10 +20,10 @@ HiChatBot offers a user-friendly and intuitive interface, making it easy to navi
 With HiChatBot, your possibilities are limitless. Empower yourself with an intelligent assistant to boost productivity, enrich knowledge, and facilitate seamless communication. Download HiChatBot now and experience the next-generation AI assistant at your fingertips.
 
 # Screenshots
-![Screenshot 1](screens/Screenshot_01.png#pic_center =60x60)
-![Screenshot 2](screens/Screenshot_02.png#pic_center =60x60)
-![Screenshot 3](screens/Screenshot_03.png#pic_center =60x60)
-![Screenshot 4](screens/Screenshot_04.png#pic_center =60x60)
+<img id="my-image" src="screens/Screenshot_01.png" alt="图片描述">
+<img id="my-image" src="screens/Screenshot_02.png" alt="图片描述">
+<img id="my-image" src="screens/Screenshot_03.png" alt="图片描述">
+<img id="my-image" src="screens/Screenshot_04.png" alt="图片描述">
 
 # Usage Instructions
 ## If you want to experience the functionality of chatGPT, you can directly download our compiled version.
